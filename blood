@@ -1,0 +1,75 @@
+import tkinter as tk
+import cv2
+
+class RobotController:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Control de Carrito de Robot")
+        self.camera = cv2.VideoCapture(0)  # Initialize camera
+
+        # Create buttons for controlling the robot
+        self.btn_adelante = tk.Button(root, text="Adelante", command=self.mover_adelante)
+        self.btn_adelante.pack()
+
+        self.btn_atras = tk.Button(root, text="Atrás", command=self.mover_atras)
+        self.btn_atras.pack()
+
+        self.btn_izquierda = tk.Button(root, text="Izquierda", command=self.girar_izquierda)
+        self.btn_izquierda.pack()
+
+        self.btn_derecha = tk.Button(root, text="Derecha", command=self.girar_derecha)
+        self.btn_derecha.pack()
+
+        # Add button for loading current battery level
+        self.btn_battery = tk.Button(root, text="Cargar nivel de batería", command=self.load_battery_level)
+        self.btn_battery.pack()
+
+        # Add button for setting robot speed
+        self.speed_label = tk.Label(root, text="Velocidad del robot:")
+        self.speed_label.pack()
+        self.speed_entry = tk.Entry(root)
+        self.speed_entry.pack()
+        self.btn_set_speed = tk.Button(root, text="Establecer velocidad", command=self.set_robot_speed)
+        self.btn_set_speed.pack()
+
+        # Add button for connecting to camera
+        self.btn_camera = tk.Button(root, text="Conectar cámara", command=self.connect_camera)
+        self.btn_camera.pack()
+
+    def mover_adelante(self):
+        # Lógica para mover el carrito hacia adelante
+        print("Moviendo hacia adelante")
+
+    def mover_atras(self):
+        # Lógica para mover el carrito hacia atrás
+        print("Moviendo hacia atrás")
+
+    def girar_izquierda(self):
+        # Lógica para girar el carrito a la izquierda
+        print("Girando a la izquierda")
+
+    def girar_derecha(self):
+        # Lógica para girar el carrito a la derecha
+        print("Girando a la derecha")
+
+    def load_battery_level(self):
+        # Lógica para cargar el nivel de batería del robot
+        print("Cargando nivel de batería...")
+
+    def set_robot_speed(self):
+        # Lógica para establecer la velocidad del robot
+        speed = self.speed_entry.get()
+        print(f"Velocidad del robot establecida en {speed}")
+
+    def connect_camera(self):
+        # Lógica para conectar a la cámara
+        if not self.camera.isOpened():
+            self.camera.open(0)
+            print("Cámara conectada")
+        else:
+            print("Cámara ya conectada")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    controller = RobotController(root)
+    root.mainloop()
